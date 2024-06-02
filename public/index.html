@@ -1,0 +1,43 @@
+<!--
+    Author: Roy Jiang
+    CS 132 Spring 2024
+    Date: June 2nd, 2024
+
+    This is the index.html page for the notes app. 
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CP4</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="utils.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <main>
+        <article>
+            <h1>Note App</h1>
+            <form id="note-form">
+                <input type="text" id="note-text" placeholder="Note (max 30 chars)" required>
+                <input type="date" id="note-date" required>
+                <button type="submit">Add Note</button>
+            </form>
+            <div id="filter-form">
+                <input type="date" id="filter-date" required>
+                <button id="filter-button">Filter by Date</button>
+            </div>
+            <button id="show-all">Show all notes</button>
+            <div id="error-space"></div>
+            <div id="notes-container"></div>
+        </article>
+        <section>
+            <h2>Trigger a 400 error using a 31 letter string... like this one!</h2>
+            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+        </section>
+    </main>
+</body>
+</html>
