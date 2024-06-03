@@ -43,7 +43,6 @@ fetch('/notes')
 ```
 
 **Example Response:**
-*Replace the {} with the example response*
 
 ```json
 [
@@ -59,6 +58,12 @@ fetch('/notes')
 ```
 
 **Error Handling:**
+* 403 Forbidden Error if invalid parameter is passed in (any parameter that is not `date` or nothing)
+```json
+{
+    "error": "Invalid query parameter: text"
+}
+```
 * 500 Internal Server Error (aside: I actually don't think the way the app is constructed that this can happen unless your server was off)
 ```json
 {
