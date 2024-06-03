@@ -15,12 +15,29 @@ const NOTES_FILE = 'notes.json';
 const MAX_NOTE_LENGTH = 30;
 
 /**
+ * Ensures that the query parameters passed into the get endpoint are valid. 
+ * Returns a 403 error if the parameter is not allowed. 
+ */
+
+function validateQueryParams(req, res, next) {
+    const allowedParams = ['date']; // Currently an array of 1. More can be added. 
+    const queryParams = Object.keys(req.query);
+    for (let param of queryParams) {
+        if (!allowedParams.includes(param)) {
+            return res.status(403).json({ error: `Invalid query parameter: ${param}` });
+        }
+    }
+
+    next();
+}
+
+/**
  * Returns notes from the JSON file as an array of objects containing note text
  * and note dates. Can be filtered by date. 
  * Example: [{"text": "note text", "date": "2024-01-01"}]
  * Returns a 500 error if something goes wrong with the server. 
  */
-app.get('/notes', (req, res) => {
+app.get('/notes', validateQueryParams, (req, res) => {
     fs.readFile(NOTES_FILE, 'utf8', (err, data) => {
         if (err) {
             res.status(500).json({ error: 'Failed to read notes' });
